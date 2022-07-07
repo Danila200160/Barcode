@@ -28,29 +28,7 @@ namespace WindowsFormsApp1
         {
 
         }       
-
-        // Generate для Barcode
-        private void button2_Click(object sender, EventArgs e)
-        {
-            int W = Convert.ToInt32(this.textBox3.Text.Trim());
-            int H = Convert.ToInt32(this.textBox4.Text.Trim());
-            //BarcodeLib.Barcode b = new BarcodeLib.Barcode();
-            //Color forecolor = Color.Black;
-            //Color backcolor = Color.White;
-            //Image img = b.Encode(BarcodeLib.TYPE.CODE128, textBox1.Text, forecolor, backcolor, (int)(W), (int)(H));
-            //pictureBox1.Image = img;           
-            BarcodeWriter writer = new BarcodeWriter() 
-            { 
-                Format = BarcodeFormat.CODE_128, 
-                Options = new ZXing.Common.EncodingOptions
-                {
-                    Width = W,
-                    Height = H                    
-                }
-            };
-            pictureBox1.Image = writer.Write(textBox1.Text);           
-        }
-
+       
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
@@ -60,38 +38,50 @@ namespace WindowsFormsApp1
         {
 
         }
-        // Save для Barcode
-        private void btnSave_Click(object sender, EventArgs e)
+        
+        private void button3_Click(object sender, EventArgs e)
         {
-            if (pictureBox1.Image == null)
-                return;
-            using (SaveFileDialog saveFileDialog = new SaveFileDialog() { Filter = "PNG|*.png" })
-            {
-                if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                    pictureBox1.Image.Save(saveFileDialog.FileName);
-            }
-        }
-        // Save для QRCODE
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (pictureBox1.Image == null)
-                return;
-            using (SaveFileDialog saveFileDialog = new SaveFileDialog() { Filter = "PNG|*.png" })
-            {
-                if (saveFileDialog.ShowDialog() == DialogResult.OK)
-                    pictureBox1.Image.Save(saveFileDialog.FileName);
-            }
-        }
-        // Generate для QRCODE
-        private void button2_Click_1(object sender, EventArgs e)
-        {
-            int S = Convert.ToInt32(this.textBox5.Text.Trim());            
-            QRCodeGenerator qr = new QRCodeGenerator();
-            var MyData = qr.CreateQrCode(textBox2.Text, QRCodeGenerator.ECCLevel.M);
-            var data = new QRCode(MyData);
-            pictureBox1.Image = data.GetGraphic(S);
-            
+            int W = Convert.ToInt32(this.textBox3.Text.Trim());
+            int H = Convert.ToInt32(this.textBox4.Text.Trim());
 
+
+
+            BarcodeLib.Barcode b = new BarcodeLib.Barcode();
+            Color forecolor = Color.Black;
+            Color backcolor = Color.White;
+            Image img = b.Encode(BarcodeLib.TYPE.CODE128, textBox1.Text, forecolor, backcolor, (int)(W), (int)(H));
+            pictureBox1.Image = img;
+            //BarcodeWriter writer = new BarcodeWriter()
+            //{
+            //    Format = BarcodeFormat.CODE_128,
+            //    Options = new ZXing.Common.EncodingOptions
+            //    {
+            //        Width = 200,
+            //        Height = 100
+            //    }
+            //};
+            //pictureBox1.Height = H;
+            //pictureBox1.Width = W;
+            //pictureBox1.Image = writer.Write(textBox1.Text);            
+            label6.Text = textBox1.Text;
+            BarcodeLib.Barcode b1 = new BarcodeLib.Barcode();           
+            Image img1 = b1.Encode(BarcodeLib.TYPE.CODE128, textBox6.Text, forecolor, backcolor, (int)(W), (int)(H));
+            pictureBox2.Image = img1;
+            label8.Text = textBox6.Text;
+        }       
+        private void TestSave_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = ".png | *.png";
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                int width, height;
+                width = panel1.Width;
+                height = panel1.Height;
+                Bitmap bmp = new Bitmap(width, height);
+                panel1.DrawToBitmap(bmp, panel1.ClientRectangle);
+                bmp.Save(sfd.FileName);
+            }
         }
     }
 }
