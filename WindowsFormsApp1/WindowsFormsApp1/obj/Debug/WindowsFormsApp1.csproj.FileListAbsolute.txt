@@ -117,7 +117,6 @@ C:\Users\Даниил\source\repos\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\S
 C:\Users\Даниил\source\repos\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\System.Text.Json.xml
 C:\Users\Даниил\source\repos\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\Даниил\source\repos\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\System.ValueTuple.xml
-C:\Users\Даниил\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csprojAssemblyReference.cache
 C:\Users\Даниил\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe.config
 C:\Users\Даниил\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form1.resources
 C:\Users\Даниил\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
@@ -188,3 +187,4 @@ C:\Users\Даниил\source\repos\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\z
 C:\Users\Даниил\source\repos\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\zxing.presentation.dll
 C:\Users\Даниил\source\repos\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\zxing.xml
 C:\Users\Даниил\source\repos\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\zxing.presentation.xml
+C:\Users\Даниил\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csprojAssemblyReference.cache
