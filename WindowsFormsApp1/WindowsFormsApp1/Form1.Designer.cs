@@ -48,9 +48,14 @@
             this.button1 = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.button2 = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.button4 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -137,11 +142,10 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(109, 63);
+            this.label6.Location = new System.Drawing.Point(102, 63);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(60, 24);
+            this.label6.Size = new System.Drawing.Size(0, 24);
             this.label6.TabIndex = 17;
-            this.label6.Text = "label6";
             // 
             // panel1
             // 
@@ -150,7 +154,7 @@
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Location = new System.Drawing.Point(430, 31);
+            this.panel1.Location = new System.Drawing.Point(55, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(337, 181);
             this.panel1.TabIndex = 18;
@@ -161,9 +165,8 @@
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label8.Location = new System.Drawing.Point(109, 94);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(60, 24);
+            this.label8.Size = new System.Drawing.Size(0, 24);
             this.label8.TabIndex = 21;
-            this.label8.Text = "label8";
             // 
             // pictureBox2
             // 
@@ -205,7 +208,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(323, 349);
+            this.button1.Location = new System.Drawing.Point(438, 12);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 22;
@@ -215,19 +218,52 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(523, 348);
+            this.button2.Location = new System.Drawing.Point(323, 349);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(89, 23);
             this.button2.TabIndex = 23;
-            this.button2.Text = "Autosave";
+            this.button2.Text = "&Save location";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(438, 62);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(242, 243);
+            this.dataGridView1.TabIndex = 24;
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(577, 11);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(103, 23);
+            this.button4.TabIndex = 25;
+            this.button4.Text = "&Multiple save";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(323, 395);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(0, 13);
+            this.label4.TabIndex = 26;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(783, 510);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox6);
@@ -250,6 +286,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -275,6 +312,10 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label4;
     }
 }
 

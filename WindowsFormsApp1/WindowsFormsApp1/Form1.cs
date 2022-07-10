@@ -10,8 +10,7 @@ using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using QRCoder;
-using ZXing;
+
 
 
 
@@ -23,15 +22,14 @@ namespace WindowsFormsApp1
         public Form1()
         {
             InitializeComponent();
-            
         }
-
+        DataSet ds;
         string path;
         int index = 0;
         private void Form1_Load(object sender, EventArgs e)
-        {            
-        }       
-       
+        {
+        }
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
@@ -41,7 +39,7 @@ namespace WindowsFormsApp1
         {
 
         }
-        
+
         private void button3_Click(object sender, EventArgs e)
         {
             int W = Convert.ToInt32(this.textBox3.Text.Trim());
@@ -50,23 +48,23 @@ namespace WindowsFormsApp1
             Color forecolor = Color.Black;
             Color backcolor = Color.White;
             Image img = b.Encode(BarcodeLib.TYPE.CODE128, textBox1.Text, forecolor, backcolor, (int)(W), (int)(H));
-            pictureBox1.Image = img;                      
+            pictureBox1.Image = img;
             label6.Text = textBox1.Text;
-            BarcodeLib.Barcode b1 = new BarcodeLib.Barcode();           
+            BarcodeLib.Barcode b1 = new BarcodeLib.Barcode();
             Image img1 = b1.Encode(BarcodeLib.TYPE.CODE128, textBox6.Text, forecolor, backcolor, (int)(W), (int)(H));
             pictureBox2.Image = img1;
             label8.Text = textBox6.Text;
-        }       
+        }
 
         private void TestSave_Click(object sender, EventArgs e)
         {
-            index += 1;                                       
-                int width, height;
-                width = panel1.Width;
-                height = panel1.Height;
-                Bitmap bmp = new Bitmap(width, height);
-                panel1.DrawToBitmap(bmp, panel1.ClientRectangle);            
-                bmp.Save(path+"/"+index+".jpg", ImageFormat.Jpeg);
+            index += 1;
+            int width, height;
+            width = panel1.Width;
+            height = panel1.Height;
+            Bitmap bmp = new Bitmap(width, height);
+            panel1.DrawToBitmap(bmp, panel1.ClientRectangle);
+            bmp.Save(path + "/" + index + ".jpg", ImageFormat.Jpeg);
             String fullAppName = Application.ExecutablePath;
             String fullAppPath = Path.GetDirectoryName(fullAppName);
             String fullFileName = Path.Combine(fullAppPath, "sound_046.wav");
@@ -79,21 +77,74 @@ namespace WindowsFormsApp1
             FBD.Description = "Выберите путь для сохранения файлов";
             if (FBD.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show("Выбранный путь для автосохранения файлов: " + FBD.SelectedPath);
+                label4.Text = "Выбранный путь для автосохранения файлов: " + FBD.SelectedPath;                
             }
             path = FBD.SelectedPath;
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog ofd = new OpenFileDialog();
-            if (ofd.ShowDialog() == DialogResult.Cancel)
-                return;           
-            string excelfile = ofd.FileName;
-            string fileText = File.ReadAllText(excelfile);
+        {           
+            string file = "";   
+            DataTable dt = new DataTable();   
+            DataRow row;
+            DialogResult result = openFileDialog1.ShowDialog();
             
+            if (result == DialogResult.OK)   
+            {
+                file = openFileDialog1.FileName; 
+                try
+                {
+                    Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
+                    Microsoft.Office.Interop.Excel.Workbook excelWorkbook = excelApp.Workbooks.Open(file);
+                    Microsoft.Office.Interop.Excel._Worksheet excelWorksheet = excelWorkbook.Sheets[1];
+                    Microsoft.Office.Interop.Excel.Range excelRange = excelWorksheet.UsedRange;
+                    int rowCount = excelRange.Rows.Count;  
+                    int colCount = excelRange.Columns.Count;                     
+                    for (int i = 1; i <= rowCount; i++)
+                    {
+                        for (int j = 1; j <= colCount; j++)
+                        {
+                            dt.Columns.Add(excelRange.Cells[i, j].Value2.ToString());
+                        }
+                        break;
+                    }                          
+                    int rowCounter;  
+                    for (int i = 1; i <= rowCount; i++) 
+                    {
+                        row = dt.NewRow(); 
+                        rowCounter = 0;
+                        for (int j = 1; j <= colCount; j++) 
+                        {                           
+                            if (excelRange.Cells[i, j] != null && excelRange.Cells[i, j].Value2 != null)
+                            {
+                                row[rowCounter] = excelRange.Cells[i, j].Value2.ToString();
+                            }
+                            else
+                            {
+                                row[i] = "";
+                            }
+                            rowCounter++;
+                        }
+                        dt.Rows.Add(row); 
+                    }
+                    dataGridView1.DataSource = dt; 
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
 
-       
+        private void button4_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < dataGridView1.RowCount-1 ; i++)
+            {               
+                    textBox1.Text = dataGridView1.Rows[i].Cells[0].Value.ToString();
+                    textBox6.Text = dataGridView1.Rows[i].Cells[1].Value.ToString();
+                    button3_Click(sender, e);
+                    TestSave_Click(sender, e);
+            }            
+        }
     }
 }
