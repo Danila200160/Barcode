@@ -62,12 +62,13 @@ namespace WindowsFormsApp1
             int width, height;
             width = panel1.Width;
             height = panel1.Height;
-            Bitmap bmp = new Bitmap(width, height);
-            panel1.DrawToBitmap(bmp, panel1.ClientRectangle);
-            bmp.Save(path + "/" + index + ".jpg", ImageFormat.Jpeg);
-            String fullAppName = Application.ExecutablePath;
-            String fullAppPath = Path.GetDirectoryName(fullAppName);
-            String fullFileName = Path.Combine(fullAppPath, "sound_046.wav");
+            Bitmap bmp = new Bitmap(width, height);            
+            panel1.DrawToBitmap(bmp, panel1.ClientRectangle);            
+            bmp.SetResolution(300.0F, 300.0F);
+            bmp.Save(path + "/" + index + ".png", ImageFormat.Png);
+            string fullAppName = Application.ExecutablePath;
+            string fullAppPath = Path.GetDirectoryName(fullAppName);
+            string fullFileName = Path.Combine(fullAppPath, "sound_046.wav");
             SoundPlayer sp = new SoundPlayer(fullFileName);
             sp.Play();
         }
