@@ -49,11 +49,16 @@ namespace WindowsFormsApp1
             Color backcolor = Color.White;
             Image img = b.Encode(BarcodeLib.TYPE.CODE128, textBox1.Text, forecolor, backcolor, (int)(W), (int)(H));
             pictureBox1.Image = img;
+            label6.Parent = panel1;
+            label6.BackColor = Color.Transparent;
+            label8.Parent = panel1;
+            label8.BackColor = Color.Transparent;
             label6.Text = textBox1.Text;
             BarcodeLib.Barcode b1 = new BarcodeLib.Barcode();
             Image img1 = b1.Encode(BarcodeLib.TYPE.CODE128, textBox6.Text, forecolor, backcolor, (int)(W), (int)(H));
             pictureBox2.Image = img1;
             label8.Text = textBox6.Text;
+            panel1.BackColor = Color.Transparent;
         }
 
         private void TestSave_Click(object sender, EventArgs e)
@@ -63,8 +68,9 @@ namespace WindowsFormsApp1
             width = panel1.Width;
             height = panel1.Height;
             Bitmap bmp = new Bitmap(width, height);            
-            panel1.DrawToBitmap(bmp, panel1.ClientRectangle);            
+            panel1.DrawToBitmap(bmp, panel1.ClientRectangle);              
             bmp.SetResolution(300.0F, 300.0F);
+            bmp.MakeTransparent(Color.FromArgb(255, 255, 255));
             bmp.Save(path + "/" + index + ".png", ImageFormat.Png);
             string fullAppName = Application.ExecutablePath;
             string fullAppPath = Path.GetDirectoryName(fullAppName);
