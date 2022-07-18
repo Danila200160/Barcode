@@ -132,3 +132,4 @@ C:\Users\Даниил\source\repos\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\M
 C:\Users\Даниил\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csprojAssemblyReference.cache
 C:\Users\Даниил\source\repos\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\ICSharpCode.SharpZipLib.dll
 C:\Users\Даниил\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.ResolveComReference.cache
+C:\Users\Даниил\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form2.resources

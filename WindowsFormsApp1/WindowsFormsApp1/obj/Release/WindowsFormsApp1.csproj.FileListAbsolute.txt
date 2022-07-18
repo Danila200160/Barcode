@@ -132,3 +132,4 @@ C:\Users\Даниил\source\repos\WindowsFormsApp1\WindowsFormsApp1\bin\Release
 C:\Users\Даниил\source\repos\WindowsFormsApp1\WindowsFormsApp1\bin\Release\Microsoft.SqlServer.Types.dll
 C:\Users\Даниил\source\repos\WindowsFormsApp1\WindowsFormsApp1\bin\Release\ICSharpCode.SharpZipLib.dll
 C:\Users\Даниил\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Release\WindowsFormsApp1.csproj.ResolveComReference.cache
+C:\Users\Даниил\source\repos\WindowsFormsApp1\WindowsFormsApp1\obj\Release\WindowsFormsApp1.Form2.resources

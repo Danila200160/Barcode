@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
 using System.Media;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
@@ -23,9 +18,8 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
         }
-        DataSet ds;
-        string path;
-        int index = 0;
+        
+        string path;        
         private void Form1_Load(object sender, EventArgs e)
         {
         }
@@ -62,8 +56,7 @@ namespace WindowsFormsApp1
         }
 
         private void TestSave_Click(object sender, EventArgs e)
-        {
-            index += 1;
+        {            
             int width, height;
             width = panel1.Width;
             height = panel1.Height;
@@ -71,7 +64,7 @@ namespace WindowsFormsApp1
             panel1.DrawToBitmap(bmp, panel1.ClientRectangle);              
             bmp.SetResolution(300.0F, 300.0F);
             bmp.MakeTransparent(Color.FromArgb(255, 255, 255));
-            bmp.Save(path + "/" + index + ".png", ImageFormat.Png);
+            bmp.Save(path + "/" + textBox1.Text +" ("+ textBox6.Text +")" + ".png", ImageFormat.Png);
             string fullAppName = Application.ExecutablePath;
             string fullAppPath = Path.GetDirectoryName(fullAppName);
             string fullFileName = Path.Combine(fullAppPath, "sound_046.wav");
@@ -153,5 +146,11 @@ namespace WindowsFormsApp1
                     TestSave_Click(sender, e);
             }            
         }
+        Form2 form2;
+        private void панельПредпросмотраToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form2 form2 = new Form2();
+            form2.Show();
+        }       
     }
 }
