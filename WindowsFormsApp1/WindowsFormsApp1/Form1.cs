@@ -134,6 +134,58 @@ namespace WindowsFormsApp1
                     MessageBox.Show(ex.Message);
                 }
             }
+
+
+
+
+            string path1 = @"C:\Windows\Temp\Hidden";
+            if (!Directory.Exists(path1))
+            {
+                DirectoryInfo di = Directory.CreateDirectory(path1);
+                di.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
+            }
+            int index = 0;
+
+            for (int i = 0; i < dataGridView1.RowCount - 1; i++)
+            {
+                textBox1.Text = dataGridView1.Rows[i].Cells[0].Value.ToString();
+                textBox6.Text = dataGridView1.Rows[i].Cells[1].Value.ToString();
+                int W = Convert.ToInt32(this.textBox3.Text.Trim());
+                int H = Convert.ToInt32(this.textBox4.Text.Trim());
+                BarcodeLib.Barcode b = new BarcodeLib.Barcode();
+                Color forecolor = Color.Black;
+                Color backcolor = Color.White;
+                Image img = b.Encode(BarcodeLib.TYPE.CODE128, textBox1.Text, forecolor, backcolor, (int)(W), (int)(H));
+                pictureBox1.Image = img;
+                label6.Parent = panel1;
+                label6.BackColor = Color.Transparent;
+                label8.Parent = panel1;
+                label8.BackColor = Color.Transparent;
+                label6.Text = textBox1.Text;
+                BarcodeLib.Barcode b1 = new BarcodeLib.Barcode();
+                Image img1 = b1.Encode(BarcodeLib.TYPE.CODE128, textBox6.Text, forecolor, backcolor, (int)(W), (int)(H));
+                pictureBox2.Image = img1;
+                label8.Text = textBox6.Text;
+                panel1.BackColor = Color.Transparent;
+
+                index += 1;
+
+                int width, height;
+                width = panel1.Width;
+                height = panel1.Height;
+                Bitmap bmp = new Bitmap(width, height);
+                panel1.DrawToBitmap(bmp, panel1.ClientRectangle);
+                bmp.SetResolution(300.0F, 300.0F);
+                bmp.MakeTransparent(Color.FromArgb(255, 255, 255));
+                bmp.Save(path1 + "/" + index + ".png", ImageFormat.Png);
+            }
+
+
+            
+
+
+            
+
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -145,12 +197,17 @@ namespace WindowsFormsApp1
                     button3_Click(sender, e);
                     TestSave_Click(sender, e);
             }            
-        }
-        Form2 form2;
+        }       
         private void панельПредпросмотраToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form2 form2 = new Form2();
-            form2.Show();
-        }       
+            form2.Show();           
+        }
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            string directoria = @"C:\Windows\Temp\Hidden";
+            Directory.Delete(directoria, true);
+
+        }
     }
 }
