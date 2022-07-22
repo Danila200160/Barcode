@@ -148,7 +148,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(343, 203);
+            this.label6.Location = new System.Drawing.Point(327, 203);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(0, 37);
             this.label6.TabIndex = 17;
@@ -169,7 +169,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label8.Location = new System.Drawing.Point(352, 243);
+            this.label8.Location = new System.Drawing.Point(353, 243);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(0, 37);
             this.label8.TabIndex = 21;
@@ -177,9 +177,9 @@
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.SystemColors.Window;
-            this.pictureBox2.Location = new System.Drawing.Point(44, 283);
+            this.pictureBox2.Location = new System.Drawing.Point(104, 283);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(830, 200);
+            this.pictureBox2.Size = new System.Drawing.Size(700, 200);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 20;
             this.pictureBox2.TabStop = false;
@@ -262,7 +262,7 @@
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.SystemColors.Info;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(314, 520);
+            this.label4.Location = new System.Drawing.Point(313, 535);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(0, 16);
             this.label4.TabIndex = 26;

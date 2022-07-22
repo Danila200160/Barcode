@@ -36,23 +36,30 @@ namespace WindowsFormsApp1
 
         private void button3_Click(object sender, EventArgs e)
         {
-            int W = Convert.ToInt32(this.textBox3.Text.Trim());
-            int H = Convert.ToInt32(this.textBox4.Text.Trim());
-            BarcodeLib.Barcode b = new BarcodeLib.Barcode();
-            Color forecolor = Color.Black;
-            Color backcolor = Color.White;
-            Image img = b.Encode(BarcodeLib.TYPE.CODE128, textBox1.Text, forecolor, backcolor, (int)(W), (int)(H));
-            pictureBox1.Image = img;
-            label6.Parent = panel1;
-            label6.BackColor = Color.Transparent;
-            label8.Parent = panel1;
-            label8.BackColor = Color.Transparent;
-            label6.Text = textBox1.Text;
-            BarcodeLib.Barcode b1 = new BarcodeLib.Barcode();
-            Image img1 = b1.Encode(BarcodeLib.TYPE.CODE128, textBox6.Text, forecolor, backcolor, (int)(W), (int)(H));
-            pictureBox2.Image = img1;
-            label8.Text = textBox6.Text;
-            panel1.BackColor = Color.Transparent;
+            try
+            {
+                int W = Convert.ToInt32(this.textBox3.Text.Trim());
+                int H = Convert.ToInt32(this.textBox4.Text.Trim());
+                BarcodeLib.Barcode b = new BarcodeLib.Barcode();
+                Color forecolor = Color.Black;
+                Color backcolor = Color.White;
+                Image img = b.Encode(BarcodeLib.TYPE.CODE128, textBox1.Text, forecolor, backcolor, (int)(W), (int)(H));
+                pictureBox1.Image = img;
+                label6.Parent = panel1;
+                label6.BackColor = Color.Transparent;
+                label8.Parent = panel1;
+                label8.BackColor = Color.Transparent;
+                label6.Text = textBox1.Text;
+                BarcodeLib.Barcode b1 = new BarcodeLib.Barcode();
+                Image img1 = b1.Encode(BarcodeLib.TYPE.CODE128, textBox6.Text, forecolor, backcolor, (int)(W), (int)(H));
+                pictureBox2.Image = img1;
+                label8.Text = textBox6.Text;
+                panel1.BackColor = Color.Transparent;
+            }
+            catch
+            {
+                MessageBox.Show("Строки пустые или введена кириллица");
+            }
         }
 
         private void TestSave_Click(object sender, EventArgs e)
@@ -62,14 +69,23 @@ namespace WindowsFormsApp1
             height = panel1.Height;
             Bitmap bmp = new Bitmap(width, height);            
             panel1.DrawToBitmap(bmp, panel1.ClientRectangle);              
-            bmp.SetResolution(300.0F, 300.0F);
+            bmp.SetResolution(300.0F, 300.0F);           
             bmp.MakeTransparent(Color.FromArgb(255, 255, 255));
-            bmp.Save(path + "/" + textBox1.Text +" ("+ textBox6.Text +")" + ".png", ImageFormat.Png);
-            string fullAppName = Application.ExecutablePath;
-            string fullAppPath = Path.GetDirectoryName(fullAppName);
-            string fullFileName = Path.Combine(fullAppPath, "sound_046.wav");
-            SoundPlayer sp = new SoundPlayer(fullFileName);
-            sp.Play();
+            try
+            {
+                bmp.Save(path + "/" + textBox1.Text + " (" + textBox6.Text + ")" + ".png", ImageFormat.Png);
+                string fullAppName = Application.ExecutablePath;
+                string fullAppPath = Path.GetDirectoryName(fullAppName);
+                string fullFileName = Path.Combine(fullAppPath, "sound_046.wav");
+                SoundPlayer sp = new SoundPlayer(fullFileName);
+                sp.Play();
+            }
+            catch
+            {
+                MessageBox.Show("Место сохранения не выбрано");
+                
+            }
+            
         }
         private void button2_Click(object sender, EventArgs e)
         {
@@ -127,12 +143,13 @@ namespace WindowsFormsApp1
                         }
                         dt.Rows.Add(row); 
                     }
-                    dataGridView1.DataSource = dt; 
+                    dataGridView1.DataSource = dt;                    
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
+                
             }
 
 
@@ -192,10 +209,30 @@ namespace WindowsFormsApp1
         {
             for (int i = 0; i < dataGridView1.RowCount-1 ; i++)
             {               
-                    textBox1.Text = dataGridView1.Rows[i].Cells[0].Value.ToString();
-                    textBox6.Text = dataGridView1.Rows[i].Cells[1].Value.ToString();
-                    button3_Click(sender, e);
-                    TestSave_Click(sender, e);
+                textBox1.Text = dataGridView1.Rows[i].Cells[0].Value.ToString();
+                textBox6.Text = dataGridView1.Rows[i].Cells[1].Value.ToString();
+                button3_Click(sender, e);
+                int width, height;
+                width = panel1.Width;
+                height = panel1.Height;
+                Bitmap bmp = new Bitmap(width, height);
+                panel1.DrawToBitmap(bmp, panel1.ClientRectangle);
+                bmp.SetResolution(300.0F, 300.0F);
+                bmp.MakeTransparent(Color.FromArgb(255, 255, 255));
+                try
+                {
+                    bmp.Save(path + "/" + textBox1.Text + " (" + textBox6.Text + ")" + ".png", ImageFormat.Png);
+                    string fullAppName = Application.ExecutablePath;
+                    string fullAppPath = Path.GetDirectoryName(fullAppName);
+                    string fullFileName = Path.Combine(fullAppPath, "sound_046.wav");
+                    SoundPlayer sp = new SoundPlayer(fullFileName);
+                    sp.Play();
+                }
+                catch
+                {
+                    MessageBox.Show("Место сохранения не выбрано");
+                    break;
+                }
             }            
         }       
         private void панельПредпросмотраToolStripMenuItem_Click(object sender, EventArgs e)
@@ -205,8 +242,12 @@ namespace WindowsFormsApp1
         }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            string directoria = @"C:\Windows\Temp\Hidden";
-            Directory.Delete(directoria, true);
+            try
+            {
+                string directoria = @"C:\Windows\Temp\Hidden";
+                Directory.Delete(directoria, true);
+            }
+            catch{ }
 
         }
     }
